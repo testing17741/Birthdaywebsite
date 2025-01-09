@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sayyed Hasan's Birthday</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #f0f4f8, #ffffff);
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #4caf50;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      margin: 5px 0 0 0;
+    }
+
+    section {
+      margin: 20px 0;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      border-left: 5px solid #4caf50;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    section h2 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      text-align: left;
+      color: #4caf50;
+    }
+
+    section:before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: #4caf50;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: none;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: #25d366;
+      color: white;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1ebe57;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .countdown-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      background: #4caf50;
+      color: white;
+      border-radius: 10px;
+      flex: 1;
+      animation: fadeInUp 0.8s;
+      margin-bottom: 10px;
+      min-width: 120px;
+    }
+
+    .countdown-box span {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .countdown-box p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #4caf50;
+      color: white;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .countdown {
+        flex-direction: column;
+      }
+
+      .countdown-box {
+        margin-bottom: 10px;
+        flex: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>Sayyed Hasan's Birthday</h1>
+      <p>Let's celebrate this special day together!</p>
+    </header>
+
+    <!-- Wishes Section -->
+    <section>
+      <h2>Your Wishes</h2>
+      <textarea id="wish" rows="4" placeholder="Write your wish here..."></textarea>
+      <button onclick="sendWish()">Send Wish via WhatsApp</button>
+    </section>
+
+    <!-- Party Information -->
+    <section>
+      <h2>Party Information</h2>
+      <p><strong>Date:</strong> 30 January 2025</p>
+      <p><strong>Time:</strong> 9:00 PM</p>
+      <p><strong>Location:</strong> Shabbir Seekh Paratha, Mumbai </p>
+    </section>
+
+    <!-- Countdown -->
+    <section>
+      <h2>Countdown to Party</h2>
+      <div class="countdown">
+        <div class="countdown-box">
+          <span id="days">00</span>
+          <p>Days</p>
+        </div>
+        <div class="countdown-box">
+          <span id="hours">00</span>
+          <p>Hours</p>
+        </div>
+        <div class="countdown-box">
+          <span id="minutes">00</span>
+          <p>Minutes</p>
+        </div>
+        <div class="countdown-box">
+          <span id="seconds">00</span>
+          <p>Seconds</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section>
+      <h2>Hasan's Services</h2>
+      <ul>
+        <li>Active STM (Mumbai Central) Team Member</li>
+      <li>Organizes Islamic Programs and Charitable Work</li>
+      <li>Dedicated to Spreading the Message of Deen</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Oroxonix Tech. All rights reserved. | Designed and Developed by Oroxonix Tech.</p>
+  </footer>
+
+  <script>
+    // Countdown Timer
+    const partyDate = new Date("2025-01-30T21:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = partyDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days < 10 ? "0" + days : days;
+      document.getElementById("hours").textContent = hours < 10 ? "0" + hours : hours;
+      document.getElementById("minutes").textContent = minutes < 10 ? "0" + minutes : minutes;
+      document.getElementById("seconds").textContent = seconds < 10 ? "0" + seconds : seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    // WhatsApp Message Functionality
+    function sendWish() {
+      const wish = document.getElementById("wish").value.trim();
+      if (wish) {
+        const message = encodeURIComponent(
+          `🎉 Happy Birthday Sayyed Hasan 🎉\n\n` +
+          `✨ My Wish: ${wish}\n\n` +
+          `🎈 Party Details:\nDate: 30 January 2025\nTime: 9:00 PM\nLocation: Shabbir Seekh Paratha, Mumbai Central\n\n` +
+          `🌟 Services:\n- Dedicated STM Member\n- Islamic Education Advocate\n- Charitable and Community Service`
+        );
+        const whatsappURL = `https://wa.me/8879720064?text=${message}`;
+        window.open(whatsappURL, "_blank");
+      } else {
+        alert("Please write a wish before sending!");
+      }
+    }
+  </script>
+</body>
+</html>
