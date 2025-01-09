@@ -253,22 +253,17 @@
 
     setInterval(updateCountdown, 1000);
 
-    // WhatsApp Message Functionality
-    function sendWish() {
-      const wish = document.getElementById("wish").value.trim();
-      if (wish) {
-        const message = encodeURIComponent(
-          `🎉 Happy Birthday Sayyed Hasan 🎉\n\n` +
-          `✨ My Wish: ${wish}\n\n` +
-          `🎈 Party Details:\nDate: 30 January 2025\nTime: 9:00 PM\nLocation: Shabbir Seekh Paratha, Mumbai Central\n\n` +
-          `🌟 Services:\n- Dedicated STM Member\n- Islamic Education Advocate\n- Charitable and Community Service`
-        );
-        const whatsappURL = `https://Wa.me/8879720064text=${message}`;
-        window.open(whatsappURL, "https://Wa.me/8879720064text=${message}");
-      } else {
-        alert("Please write a wish before sending!");
-      }
-    }
+    // WhatsApp Message Functionality (Only Sending Wish)
+function sendWish() {
+  const wish = document.getElementById("wish").value.trim();
+  if (wish) {
+    const message = encodeURIComponent(`🎉 Happy Birthday Sayyed Hasan 🎉\n\n✨ My Wish: ${wish}`);
+    const whatsappURL = `https://wa.me/918879720064?text=${message}`;
+    window.open(whatsappURL, "_blank");
+  } else {
+    alert("Please write a wish before sending!");
+  }
+}
   </script>
 </body>
 </html>
