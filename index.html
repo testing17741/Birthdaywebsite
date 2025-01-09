@@ -257,7 +257,7 @@
 function sendWish() {
   const wish = document.getElementById("wish").value.trim();
   if (wish) {
-    const message = encodeURIComponent(`🎉 Happy Birthday Sayyed Hasan 🎉\n\n✨ My Wish: ${wish}`);
+    const message = encodeURIComponent(`Happy Birthday Sayyed Hasan \n\n User Wish: ${wish}\n\n Message From Website \n\n https://hasansbirthday.netlify.app`);
     const whatsappURL = `https://wa.me/918879720064?text=${message}`;
     window.open(whatsappURL, "_blank");
   } else {
